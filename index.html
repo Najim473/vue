@@ -27,6 +27,11 @@
       template: `
           <form @submit.prevent="handleSubmit">
             <h1>{{title}}</h1>
+            <p v-for="(str,i) in strings" :key="i">{{str}}
+              <br>
+              <br>
+              {{i}}
+              </p>
             <custom-input 
             v-for="(input,i) in inputs"
             :key='i'
@@ -40,11 +45,11 @@
       data() {
         return {
           title: "Login Form",
-          // inputs:[
-          //   'email',
-          //   'password',
-          //   'name'
-          // ],
+          strings:[
+            'email',
+            'password',
+            'name'
+          ],
           inputs: [
             {
               label: "Email",
@@ -65,7 +70,7 @@
       },
       methods: {
         handleSubmit() {
-          console.log(this.email, this.password);
+          console.log(this.inputs[0].value, this.inputs[1].value);
         },
       },
     });
@@ -74,10 +79,10 @@
 
         <label>
           {{label}}
-          <input type="text" v-model="inputValue"/>
+          <input :type="type" v-model="inputValue"/>
            </label>
         `,
-      props: ["label", "modelValue"],
+      props: ["label","type","modelValue"],
       computed: {
         inputValue: {
           get() {
