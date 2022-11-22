@@ -1,40 +1,52 @@
-<template>
-  <!-- <myButton @click="handleClick"/> -->
-  <myButton @buttonClicked="showAlert" text="My button text" />
-  <h1 @click="handleClick">Hello {{ name }}</h1>
-</template>
 <script setup>
-import { ref } from "vue";
-import myButton from ".././src/components/button/button.vue";
-const name = ref("Vue js");
-const handleClick = () => {
-  name.value = "Vue";
-};
-const showAlert = newName => {
-  // alert("Child button was clicked");
-  name.value = newName
-};
+import HelloWorld from "./components/HelloWorld.vue";
+import TheWelcome from "./components/TheWelcome.vue";
 </script>
-<!-- <script>
-import myButton from '.././src/components/button/button.vue'
- import {ref} from 'vue'
- export default{
-  setup(){
-    const name = ref(" Vue js")
-    const handleClick =()=>{
-      name.value = 'Vue';
-    }
-    const showAlert=()=>{
-      alert('Child button was clicked')
-    }
-    return{
-      name,
-      handleClick,
-      showAlert
-    }
-  },
-  components:{
-    myButton
+
+<template>
+  <header>
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
+  <main>
+    <TheWelcome />
+  </main>
+</template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
   }
- }
-</script> -->
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+</style>
