@@ -1,0 +1,29 @@
+nav {
+    background: rgb(95, 195, 187);
+    padding: 2% 15%;
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+
+        li {
+            font-size: 25px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            transition: 1s;
+
+            &:hover {
+                color: #000;
+            }
+        }
+    }
+}
+
+.btn {
+    background: red;
+    border: none;
+    margin-left: 30px;
+    padding: 20px;
+    font-size: 30px;
+}
