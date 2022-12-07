@@ -1,4 +1,18 @@
+<script setup>
+import { ref } from "vue";
+import lists from './list.json'
+// const state = reactive({ count: 0 });
+const count = ref(0)
+function increment() {
+   count.value++ ;
+}
+</script>
 <template>
+<ul class="list ">
+<li class="listItem" v-for="list in lists">
+{{list.title}}
+</li>
+</ul>
   <Nav>
     <ul>
       <li>Home</li>
@@ -14,7 +28,7 @@
     <!-- <p v-once="tacos">{{tacos}}</p> -->
     <p>{{tacos}}</p>
     <pre>
-      {{$data}}
+      {{$data}} 
     </pre>
  </div>
   </template>
@@ -28,14 +42,7 @@
   }
  }
 </script>
-<script setup>
-import { ref } from "vue";
-// const state = reactive({ count: 0 });
-const count = ref(0)
-function increment() {
-   count.value++ ;
-}
-</script>
+
 <style lang="scss" scoped>
 @import "./myHome.scss";
 </style>
