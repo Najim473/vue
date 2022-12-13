@@ -1,17 +1,20 @@
 <template>
   <div>
-    <h1>What is your favorite fruits</h1>
-    <p><input v-model="fruits" /></p>
-    <p v-once="fruits">{{ fruits }}</p>
-    <span v-pre>My favorite fruits is {{ fruits }}</span>
-    <pre>{{ $data }}</pre>
+ <div class="item">
+  <div class="quantity">
+    <button class="incre" @click="counter>0 ? counter-=1:0">-</button>
+    <span>count: {{counter}}</span>
+    <button class="incre" @click=" counter+=1 ">+</button>
+
+  </div>
+ </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      fruits: "I like to eat Apple",
+     counter:0
     };
   },
 };
