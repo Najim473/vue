@@ -1,10 +1,17 @@
 button {
-    background: #000;
+    display: none;
+}
+
+button.active {
+    background: rgb(188, 175, 62);
     color: #fff;
+    display: block;
     padding: 10px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 100;
     margin: 20px;
+    border-radius: 15px;
+    border: none;
 }
 
 h3 {

@@ -12,30 +12,15 @@ function increment() {
     <h2>What is your favorite fruits:</h2>
     <textarea id="" cols="30" rows="3" v-model="fruits"></textarea>
     <!-- <button v-if="fruits" type="submit">submit</button> -->
-    <button v-show="fruits" type="submit">submit</button>
-  </div>
-  <div>
-    <h3>Do You like Fruits</h3>
-    <br>
-    <input type="radio" v-model="fruits" value="yes" id="yes">
-    <label for="yes"> Yes</label>
-    <br>
-    <br>
-    <input type="radio" v-model="fruits" value="no" id="no">
-    <label for="no"> No</label>
-    <br>
-    <br>
-    <br>
-    <p v-if="fruits === 'yes'" class="thumbs">😄</p>
-    <p v-else-if="fruits === 'no'" class="thumbs">😧</p>
-
+    <button :class="[fruits ? activeClass : ' ']">submit</button>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      fruits: ''
+      fruits: "",
+      activeClass: "active",
     };
   },
 };
