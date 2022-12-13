@@ -9,47 +9,33 @@ function increment() {
 </script>
 <template>
   <div>
-    <h2>Type Here:</h2>
-    <textarea
-      name="v-model"
-      id=""
-      cols="30"
-      rows="10"
-      v-model="message"
-    ></textarea>
-    <p>{{ message }}</p>
-    <!-- <div>
-  <input v-model="checkedNames" type="checkbox" value="paul"/>
-  <label for="paul">paul</label>
-  <input v-model="checkedNames" type="checkbox" value="Jhon"/>
-  <label for="Jhon">Jhon</label>
-  <h1>checked Name is : {{checkedNames}}</h1>
-</div> -->
-    <span class="v-model" v-for="option in options" :key="option">
-   <div>
-    <input v-model="checkedNames" type="checkbox" 
-    :id="option.value"
-    :value="option.value" />
-      <label for="option.value">{{ option.value }}</label>
-   </div>
-    </span>
-    <br />
-    <br />
-    <h1>checked Name is : {{ checkedNames }}</h1>
+    <h2>What is your favorite fruits:</h2>
+    <textarea id="" cols="30" rows="3" v-model="fruits"></textarea>
+    <!-- <button v-if="fruits" type="submit">submit</button> -->
+    <button v-show="fruits" type="submit">submit</button>
+  </div>
+  <div>
+    <h3>Do You like Fruits</h3>
+    <br>
+    <input type="radio" v-model="fruits" value="yes" id="yes">
+    <label for="yes"> Yes</label>
+    <br>
+    <br>
+    <input type="radio" v-model="fruits" value="no" id="no">
+    <label for="no"> No</label>
+    <br>
+    <br>
+    <br>
+    <p v-if="fruits === 'yes'" class="thumbs">😄</p>
+    <p v-else-if="fruits === 'no'" class="thumbs">😧</p>
+
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      message: "Hello Bangladesh",
-      checkedNames: [],
-      options: [
-        { value: "Jhon" },
-        { value: "Paul" },
-        { value: "George" },
-        { value: "Ringo" },
-      ],
+      fruits: ''
     };
   },
 };

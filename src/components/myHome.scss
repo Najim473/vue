@@ -1,14 +1,12 @@
- p {
-     padding: 10% 30%;
-     font-size: 30px;
-     color: rebeccapurple;
- }
+button {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 20px;
+}
 
- .v-model {
-     display: inline-block;
-     padding: 30px;
-
-     label {
-         padding-left: 20px;
-     }
- }
+h3 {
+    margin-top: 30px;
+}
