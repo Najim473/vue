@@ -1,8 +1,9 @@
-export default App = {
+const path = require('path');
+module.exports = {
+    name: 'robotface',
     data() {
         return {
-            message: 'Hi!'
+            message: 'Hello Bangladesh'
         }
     }
 }
-Vue.createApp(App).mount('#robotface')

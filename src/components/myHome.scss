@@ -1,4 +1,14 @@
  p {
      padding: 10% 30%;
      font-size: 30px;
+     color: rebeccapurple;
+ }
+
+ .v-model {
+     display: inline-block;
+     padding: 30px;
+
+     label {
+         padding-left: 20px;
+     }
  }
