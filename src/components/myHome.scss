@@ -1,19 +1,9 @@
-button {
-    display: none;
-}
+ div {
+     margin: 100px;
+ }
 
-button.active {
-    background: rgb(188, 175, 62);
-    color: #fff;
-    display: block;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 100;
-    margin: 20px;
-    border-radius: 15px;
-    border: none;
-}
-
-h3 {
-    margin-top: 30px;
-}
+ span {
+     font-weight: 900;
+     color: green;
+     padding: 0% 10px;
+ }
