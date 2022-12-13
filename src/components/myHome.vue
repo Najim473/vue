@@ -1,19 +1,17 @@
 <template>
   <div>
-      <p v-for="(joke, key, index) in jokes" :key="joke">
-        {{index}} - <span>:</span> 
-        {{key}} {{joke}}</p>
+ <h1>What is your favorite fruits</h1>
+ <p><input v-model="fruits"></p>
+ <p v-once="fruits">{{fruits}}</p>
+ <span v-pre>My favorite fruits is {{fruits}}</span>
+ <pre>{{$data}}</pre>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      jokes: {
-        question: "What did one baby prototype say to the other?",
-        answer: `I'll race you to class!`,
-        response: "groan",
-      },
+       fruits :'I like to eat Apple'
     };
   },
 };
