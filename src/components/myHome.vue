@@ -1,23 +1,30 @@
 <template>
-  <div>
-    <!-- v-html  -->
- <h3>What is your favorite kind of tacos?</h3>
- <!-- <p v-html="tacos"></p> -->
- <!-- v-text  -->
- <p v-text="tacos"></p>
- <p>{{tacos}}</p>
- <p><input v-model="tacos"></p>
+  <div class="row">
+    <input v-model.number="num1" type="number" />
+    <span>+</span>
+    <input v-model.number="num2" type="number" />
+    <span>=</span>
+    <span>{{ num1 + num2 }}</span>
+  </div>
+  <div class="row second">
+    <select v-model="name">
+      <option>Apple</option>
+      <option>Orange</option>
+      <option>Mango</option>
+      <option>Lemon</option>
+      <option>Banana</option>
+    </select>
+    <br />
+    <p v-if="name">My favorite fruit is {{ name }}</p>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      // v-html 
-      // tacos:`I like <a href="najimuddin.me" onclick="alert('I hacked you and stole all your tacos haha')">Al Pastor</a>`
-      // tacos:`I like <a href="najimuddin.me">Al Pastor</a>`
-      // v-text 
-      tacos:'I like came asada'
+      num1: 0,
+      num2: 0,
+      name: "",
     };
   },
 };
