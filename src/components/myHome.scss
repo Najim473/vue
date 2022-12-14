@@ -5,3 +5,20 @@
  .box {
      height: 30vh;
  }
+
+ button {
+     padding: 10px;
+     border: none;
+     background: aliceblue;
+     color: aliceblue;
+ }
+
+ .active {
+     background: #000;
+     cursor: pointer;
+ }
+
+ pre-content {
+     background: #000;
+     width: 320px;
+ }

@@ -1,52 +1,57 @@
 <template>
-  <div
-    class="box"
-    @mousemove="xcoordinate"
-    :style="{ backgroundColor: `hsl(${x},80%,50%)` }"
-  >
-    <button @click="increment">increment</button>
-    <button @click="decrement">decrement</button>
-    <p>{{ counter }}</p>
-
-    <br />
-    <p>Pixels across {{ x }}</p>
-  </div>
-
-  <div>
-    <ul>
-      <li v-for="comment in comments" :key="comment">{{ comment }}</li>
-    </ul>
-    <br />
-    <input
-      @keyup.enter="addComment"
-      v-model="newComment"
-      placeholder="Add a comment"
-    />
-  </div>
+  <form @submit.prevent="submitForm">
+    <div>
+      <label for="name">Name:</label>
+      <br />
+      <input type="text" id="name" v-model="name" required />
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <br />
+      <input type="email" id="email" v-model="email" required />
+    </div>
+    <div>
+      <label for="caps">HOW DO I TURN OFF CAPS LOCK</label>
+      <textarea
+        id="caps"
+        cols="30"
+        rows="10"
+        v-model="caps"
+        required
+      ></textarea>
+    </div>
+    <button :class="[name ? activeClass : '']" type="submit">submit</button>
+    <div>
+      <h5>Response from server:</h5>
+      <pre>{{ response }}</pre>
+    </div>
+  </form>
 </template>
 <script>
 export default {
   data() {
     return {
-      counter: 0,
-      x: 0,
-      newComment: '',
-      comments: ["Looks great you!", "I love to sea", "Where are you at"],
+      name: "",
+      email: "",
+      caps: "",
+      response: "",
+      activeClass: "active",
     };
   },
   methods: {
-    increment() {
-      this.counter++;
-    },
-    decrement() {
-      this.counter--;
-    },
-    xcoordinate(e) {
-      this.x = e.clientX;
-    },
-    addComment() {
-      this.comments.push(this.newComment);
-      this.newComment = "";
+    submitForm() {
+      axios
+        .post("https://jsonplaceholder.typicode.com/posts", {
+          name: this.name,
+          email: this.email,
+          caps: this.caps,
+        })
+        .then((response) => {
+          this.response = JSON.stringify(response, null, 2);
+        })
+        .catch((error) => {
+          this.response = "Error:" + error.response.status;
+        });
     },
   },
 };
