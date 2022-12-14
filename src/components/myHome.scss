@@ -1,24 +1,9 @@
- div {
-     margin: 100px;
+ table {
+     border: 1px solid red;
+     margin: 20px;
+     padding: 20px;
  }
 
- .box {
-     height: 30vh;
- }
-
- button {
-     padding: 10px;
-     border: none;
-     background: aliceblue;
-     color: aliceblue;
- }
-
- .active {
-     background: #000;
-     cursor: pointer;
- }
-
- pre-content {
-     background: #000;
-     width: 320px;
+ h3 {
+     border-bottom: 2px solid green;
  }
