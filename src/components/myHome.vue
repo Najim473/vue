@@ -1,33 +1,38 @@
 <template>
+  <br />
+  <br />
+  <h3>Search a Title : <input v-model="filterText" /></h3>
+  <br />
+  <br />
   <h3>
     Sort titles by:
     <button @click="sortLowest">Lowest Rated</button>
     <button @click="sortHighest">Highest Rated</button>
   </h3>
 
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key  in columns">
-            {{ key }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="entry in ratingInfo">
-          <td v-for="key in columns">
-            {{entry[key]}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th v-for="key in columns">
+          {{ key }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="entry in filtredFilms">
+        <td v-for="key in columns">
+          {{ entry[key] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 <script>
 export default {
   data() {
     return {
       columns: ["title", "rating"],
-      ratingInfo: [
+      ratingsInfo: [
         { title: "White Chicks", rating: 82 },
         { title: `Grey's anatomy`, rating: 98 },
         { title: "Person Break", rating: 93 },
@@ -37,14 +42,21 @@ export default {
         { title: "Death Note", rating: 97 },
         { title: "Naruto", rating: 83 },
       ],
+      filterText: ''
     };
   },
   methods: {
     sortLowest() {
-      this.ratingInfo.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+      this.ratingsInfo.sort((a, b) => (a.rating > b.rating ? 1 : -1));
     },
     sortHighest() {
-      this.ratingInfo.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+      this.ratingsInfo.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+    },
+  },
+  computed: {
+    filtredFilms() {
+      let filter = new RegExp(this.filterText, 'i');
+      return this.ratingsInfo.filter((el) => el.title.match(filter));
     },
   },
 };
