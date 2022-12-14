@@ -1,50 +1,37 @@
 <template>
-  <h3>
-    Sort titles by:
-    <button @click="sortLowest">Lowest Rated</button>
-    <button @click="sortHighest">Highest Rated</button>
-  </h3>
-
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key  in columns">
-            {{ key }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="entry in ratingInfo">
-          <td v-for="key in columns">
-            {{entry[key]}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h1>
+    Fruits Name:
+    <input type="text" v-model.lazy="userData" />
+  </h1>
+  <h2 v-if="userData">Initial entry: {{ userData }}</h2>
+  <h2 v-if="userData">Computed value: {{ greeting }}</h2>
+  <br />
+  <br />
+  <br />
+  <hr />
+  <p>counter : {{counter}}</p>
+  <p>counter computed : {{countupComp}}</p>
+  <button @click="countUp">Increase</button>
 </template>
 <script>
 export default {
   data() {
     return {
-      columns: ["title", "rating"],
-      ratingInfo: [
-        { title: "White Chicks", rating: 82 },
-        { title: `Grey's anatomy`, rating: 98 },
-        { title: "Person Break", rating: 93 },
-        { title: "How I Net Your Mother", rating: 94 },
-        { title: "Supernatural", rating: 85 },
-        { title: "Breaking Bed", rating: 91 },
-        { title: "Death Note", rating: 97 },
-        { title: "Naruto", rating: 83 },
-      ],
+      userData: "",
+      counter: 0,
     };
   },
   methods: {
-    sortLowest() {
-      this.ratingInfo.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    countUp() {
+      this.counter++;
     },
-    sortHighest() {
-      this.ratingInfo.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+  },
+  computed: {
+    greeting() {
+      return `Do you like ${this.userData}`;
+    },
+    countupComp() {
+      return this.counter + 1;
     },
   },
 };
