@@ -1,4 +1,5 @@
 <template>
+<div>
   <h1>
     Fruits Name:
     <input type="text" v-model.lazy="userData" />
@@ -12,6 +13,16 @@
   <p>counter : {{counter}}</p>
   <p>counter computed : {{countupComp}}</p>
   <button @click="countUp">Increase</button>
+  <br />
+  <br />
+  <br />
+  <hr />
+  <h2>Tip calculator</h2>
+  <br>
+  <p><strong>Total : {{customertotal}}</strong></p>
+  <br>
+<p>20% : {{tip20}}</p>
+</div>
 </template>
 <script>
 export default {
@@ -19,6 +30,7 @@ export default {
     return {
       userData: "",
       counter: 0,
+      customertotal:23.34
     };
   },
   methods: {
@@ -33,6 +45,9 @@ export default {
     countupComp() {
       return this.counter + 1;
     },
+    tip20(){
+      return (this.customertotal*.2).toFixed(2)
+    }
   },
 };
 </script>
