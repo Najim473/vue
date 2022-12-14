@@ -1,62 +1,108 @@
 <template>
-  <br />
-  <br />
-  <h3>Search a Title : <input v-model="filterText" /></h3>
-  <br />
-  <br />
-  <h3>
-    Sort titles by:
-    <button @click="sortLowest">Lowest Rated</button>
-    <button @click="sortHighest">Highest Rated</button>
-  </h3>
+  <div class="contain">
+    <h2>Blog Posts</h2>
+    <div class="new">
+      <h3>Add a New Post</h3>
+      <form @submit.prevent="addPost">
+        <input v-model="newTitle" placeholder="title" required/>
+        <input v-model="newAuthor" placeholder="author name" required/>
+        <select v-model="newLabel" required>
+        <option disabled value="">Add a New label</option>
+        <option v-for="category in categories" :value="category">{{ category }}</option>
+      </select>
+        <button type="submit">Add New Blog Post</button>
+      </form>
+    </div>
+    <select v-model="selected">
+      <option disabled value="">Filter with a label</option>
+      <option v-for="category in categories" :value="category">{{ category }}</option>
+    </select>
 
-  <table>
-    <thead>
-      <tr>
-        <th v-for="key in columns">
-          {{ key }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="entry in filtredFilms">
-        <td v-for="key in columns">
-          {{ entry[key] }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div v-for="post in filteredByLabel" :key="post.title" class="post">
+      <span class="label">{{ post.label }}</span>
+      <p>{{ post.title }}</p>
+      <small>{{ post.author }}</small>
+    </div>
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      columns: ["title", "rating"],
-      ratingsInfo: [
-        { title: "White Chicks", rating: 82 },
-        { title: `Grey's anatomy`, rating: 98 },
-        { title: "Person Break", rating: 93 },
-        { title: "How I Net Your Mother", rating: 94 },
-        { title: "Supernatural", rating: 85 },
-        { title: "Breaking Bed", rating: 91 },
-        { title: "Death Note", rating: 97 },
-        { title: "Naruto", rating: 83 },
-      ],
-      filterText: ''
+      selected: "",
+      categories: ["science", "math", "poetry", "history"],
+      posts: [ {
+          author: '@vFitzgerald',
+          title: 'Quod Ducimus Omnis',
+          label: 'science'
+        },
+        {
+          author: '@mPalmer',
+          title: 'Vero Eius Laboriosam Ex Repudiandae',
+          label: 'math'
+        },
+        {
+          author: '@mDean',
+          title: 'Magnam Odit',
+          label: 'science'
+        },
+        {
+          author: '@tCole',
+          title: 'Velit Mollitia Voluptates Assumenda',
+          label: 'science'
+        },
+        {
+          author: '@jCooper',
+          title: 'Eum Commodi Cupiditate',
+          label: 'poetry'
+        },
+        {
+          author: '@lLamb',
+          title: 'Amet',
+          label: 'history'
+        },
+        {
+          author: '@fMartin',
+          title: 'Voluptatem Fuga Cum Asperiores Error',
+          label: 'science'
+        },
+        {
+          author: '@eHayes',
+          title: 'Ipsa Consectetur Rerum Repellat Quia',
+          label: 'math'
+        },
+        {
+          author: '@cCollier',
+          title: 'Dolor Nihil Delectus',
+          label: 'science'
+        },
+        {
+          author: '@cBenson',
+          title: 'Labore Ipsum Ad Pariatur',
+          label: 'poetry'
+        }],
+      newTitle: "",
+      newAuthor: "",
+      newLabel: "",
     };
   },
   methods: {
-    sortLowest() {
-      this.ratingsInfo.sort((a, b) => (a.rating > b.rating ? 1 : -1));
-    },
-    sortHighest() {
-      this.ratingsInfo.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+    addPost() {
+      let addedPost = {
+        author: this.newAuthor,
+        title: this.newTitle,
+        label: this.newLabel,
+      };
+      this.posts.push(addedPost);
+      this.newTitle = "";
+      this.newAuthor = "";
+      this.newLabel = "";
     },
   },
   computed: {
-    filtredFilms() {
-      let filter = new RegExp(this.filterText, 'i');
-      return this.ratingsInfo.filter((el) => el.title.match(filter));
+    filteredByLabel() {
+      let filter = new RegExp(this.selected, "i");
+      return this.posts.filter((el) => el.label.match(filter));
     },
   },
 };
