@@ -1,31 +1,53 @@
 <template>
-  <div class="row">
-    <input v-model.number="num1" type="number" />
-    <span>+</span>
-    <input v-model.number="num2" type="number" />
-    <span>=</span>
-    <span>{{ num1 + num2 }}</span>
-  </div>
-  <div class="row second">
-    <select v-model="name">
-      <option>Apple</option>
-      <option>Orange</option>
-      <option>Mango</option>
-      <option>Lemon</option>
-      <option>Banana</option>
-    </select>
+  <div
+    class="box"
+    @mousemove="xcoordinate"
+    :style="{ backgroundColor: `hsl(${x},80%,50%)` }"
+  >
+    <button @click="increment">increment</button>
+    <button @click="decrement">decrement</button>
+    <p>{{ counter }}</p>
+
     <br />
-    <p v-if="name">My favorite fruit is {{ name }}</p>
+    <p>Pixels across {{ x }}</p>
+  </div>
+
+  <div>
+    <ul>
+      <li v-for="comment in comments" :key="comment">{{ comment }}</li>
+    </ul>
+    <br />
+    <input
+      @keyup.enter="addComment"
+      v-model="newComment"
+      placeholder="Add a comment"
+    />
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      num1: 0,
-      num2: 0,
-      name: "",
+      counter: 0,
+      x: 0,
+      newComment: '',
+      comments: ["Looks great you!", "I love to sea", "Where are you at"],
     };
+  },
+  methods: {
+    increment() {
+      this.counter++;
+    },
+    decrement() {
+      this.counter--;
+    },
+    xcoordinate(e) {
+      this.x = e.clientX;
+    },
+    addComment() {
+      this.comments.push(this.newComment);
+      this.newComment = "";
+    },
   },
 };
 </script>
