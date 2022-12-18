@@ -1,38 +1,29 @@
 <template>
   <div class="main">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem in
-      vero ex esse error ducimus, facere omnis tempora obcaecati officiis!
-    </p>
-    <compo name="Mango" name2="Apple" />
-    <compo name="Apple" name2="Mango" />
-    <compo name="Banana" name2="Apple" />
-    <compo :name="name" :name2="name2" />
-    <br />
-    <br />
-    <br />
-    <!-- <arti /> -->
-    <!-- <arti title="Article" :like="20" /> -->
-    <arti :like="20" :isPublished="false" />
+    <button @click="showPopup=true">Show Popup</button>
+    <Popup v-show="showPopup" @close="closePopup"/>
   </div>
 </template>
 <script>
-import compo from "./component.vue";
-import arti from "./Article.vue";
+import Popup from "./popup.vue";
 export default {
   name: "myHome",
   components: {
-    compo,
-    arti,
+    Popup,
   },
   data() {
     return {
-      name: "Lemon",
-      name2: "Orange",
+      showPopup:false
     };
   },
+  methods:{
+    closePopup(name){
+      this.showPopup=false
+      console.log('name',name);
+    }
+  }
 };
 </script>
-<!-- <style lang="scss" scoped>
+<style lang="scss" scoped>
 @import "./myHome.scss";
-</style> -->
+</style>
