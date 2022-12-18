@@ -1,6 +1,6 @@
 <template>
   <div className="flex">
-    <myHome />
+    <myHome name="Mango"/>
     <!-- <mySelf/>     -->
   </div>
 </template>
