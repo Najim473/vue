@@ -1,12 +1,15 @@
-<script setup>
-import myHome from "./components/myHome.vue" 
-</script>
 <template>
- <div className="flex">
+  <div className="flex">
     <myHome />
     <!-- <mySelf/>     -->
- </div>
-</template> 
- <script>
-
+  </div>
+</template>
+<script>
+import myHome from "./components/myHome.vue";
+export default {
+  name: "App",
+  components: {
+    myHome,
+  },
+};
 </script>
