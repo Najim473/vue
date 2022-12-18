@@ -1,57 +1,84 @@
+
+<!-- BEER COUNTING  -->
 <template>
-<div>
-  <h1>
-    Fruits Name:
-    <input type="text" v-model.lazy="userData" />
-  </h1>
-  <h2 v-if="userData">Initial entry: {{ userData }}</h2>
-  <h2 v-if="userData">Computed value: {{ greeting }}</h2>
-  <br />
-  <br />
-  <br />
-  <hr />
-  <p>counter : {{counter}}</p>
-  <p>counter computed : {{countupComp}}</p>
-  <button @click="countUp">Increase</button>
-  <br />
-  <br />
-  <br />
-  <hr />
-  <h2>Tip calculator</h2>
-  <br>
-  <p><strong>Total : {{customertotal}}</strong></p>
-  <br>
-<p>20% : {{tip20}}</p>
-</div>
+ <div v-for="beer in beers">
+  <h1>{{beer.name}} </h1>
+ </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      userData: "",
-      counter: 0,
-      customertotal:23.34
+      bottom: false,
+      beers: []
     };
   },
-  methods: {
-    countUp() {
-      this.counter++;
-    },
-  },
-  computed: {
-    greeting() {
-      return `Do you like ${this.userData}`;
-    },
-    countupComp() {
-      return this.counter + 1;
-    },
-    tip20(){
-      return (this.customertotal*.2).toFixed(2)
+  watch: {
+    bottom(newValue) {
+      if (newValue) {
+        this.addBeer();
+      }
     }
   },
+  created() {
+    window.addEventListener("scroll", () => {
+      this.bottom = this.bottomVisible();
+    });
+    this.addBeer();
+  },
+  methods: {
+    bottomVisible() {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight;
+      return bottomOfPage || pageHeight < visible;
+    },
+    addBeer() {
+      axios.get("https://api.punkapi.com/v2/beers/random").then((response) => {
+        let api = response.data[0];
+        let apiInfo = {
+          name: api.name,
+          desc: api.description,
+          img: api.image_url,
+          tips: api.brewers_tips,
+          tagline: api.tagline,
+          food: api.food_pairing
+        };
+        this.beers.push(apiInfo);
+        if (this.bottomVisible()) {
+          this.addBeer();
+        }
+      });
+    }
+  }
 };
 </script>
-
 <style lang="scss" scoped>
 @import "./myHome.scss";
 </style>
+
+<!-- COUNTING WATCHER CHANGE  -->
+<!-- <template>
+  <div>
+    <input type="number" v-model.number="counter" />
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      counter: 0,
+      bottom: false,
+      beers: [],
+    };
+  },  
+  watch: {
+    counter(newvalue, oldValue) {
+      console.log(
+        `The counter has changed! It was old ${oldValue} and It's new value ${newvalue}`
+      );
+    },
+  },
+};
+</script> -->
