@@ -1,27 +1,29 @@
 <template>
   <div class="main">
-    <button @click="showPopup=true">Show Popup</button>
-    <Popup v-show="showPopup" @close="closePopup"/>
+    <!-- <card content="content 01"/>
+    <card content="content 02"/> -->
+    <card/>
+    <card>Card content</card>
+    <card><h2>Card content</h2></card>
+    <card>
+      <img
+        src="https://i.ibb.co/zRj6zwP/pexels-anna-shvets-4588065.jpg"
+        alt=""
+      />
+    </card>
   </div>
 </template>
 <script>
-import Popup from "./popup.vue";
+import card from "./card.vue";
 export default {
   name: "myHome",
   components: {
-    Popup,
+    card,
   },
   data() {
-    return {
-      showPopup:false
-    };
+    return {};
   },
-  methods:{
-    closePopup(name){
-      this.showPopup=false
-      console.log('name',name);
-    }
-  }
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
