@@ -11,6 +11,19 @@
         alt=""
       />
     </card>
+    <!-- NAMED SLOTS  -->
+ <card>
+  <template v-slot:header>
+    Header
+  </template>
+  <template v-slot:default>
+    <img src="https://i.ibb.co/3hcHzsg/pexels-kelvin-valerio-617278.jpg" alt="">
+  </template>
+  <template v-slot:footer>
+    <button>View details</button>
+  </template>
+
+ </card>
   </div>
 </template>
 <script>
