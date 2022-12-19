@@ -1,24 +1,38 @@
 <template>
   <div class="main">
- <NameList>
-  <template v-slot:default="slotProps">
-    {{slotProps.firstName}}
-    <br>
-    <br>
-    {{ slotProps.lastName }}
-  </template>
- </NameList>
+    <button @click="activeTab = 'TabA'">Tab A</button>
+    <button @click="activeTab = 'TabB'">Tab B</button>
+    <button @click="activeTab = 'TabC'">Tab C</button>
+    <br />
+    <br />
+    <br />
+    <keep-alive>
+      <component :is="activeTab" />
+    </keep-alive>
+    <!-- <component :is="activeTab"/> -->
+    <!-- <div class="tab">
+      <TabA v-if="activeTab === 'TabA'" class="tabA" />
+      <TabB v-if="activeTab === 'TabB'" class="tabB" />
+      <TabC v-if="activeTab === 'TabC'" class="tabC" />
+    </div> -->
   </div>
 </template>
 <script>
-import NameList from "./NameList.vue";
+import TabA from "./TabA.vue";
+import TabB from "./TabB.vue";
+import TabC from "./TabC.vue";
+
 export default {
   name: "myHome",
   components: {
-    NameList,
+    TabA,
+    TabB,
+    TabC,
   },
   data() {
-    return {};
+    return {
+      activeTab: "TabA",
+    };
   },
   methods: {},
 };

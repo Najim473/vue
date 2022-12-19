@@ -1,9 +1,24 @@
 .main {
     margin: 5%;
-}
 
-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+    button {
+        cursor: pointer;
+    }
+
+    .tab {
+        display: flex;
+
+        .tabA,
+        .tabB,
+        .tabC {
+            color: rgb(246, 247, 248);
+            font-size: 20px;
+            background: rgb(110, 127, 25);
+            padding: 10px;
+            font-style: italic;
+            border-radius: 4px;
+            width: 150px;
+            margin: 0 10px;
+        }
+    }
 }
