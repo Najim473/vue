@@ -1,40 +1,49 @@
 <template>
   <div class="main">
-    <button @click="activeTab = 'TabA'">Tab A</button>
-    <button @click="activeTab = 'TabB'">Tab B</button>
-    <button @click="activeTab = 'TabC'">Tab C</button>
-    <br />
-    <br />
-    <br />
-    <keep-alive>
-      <component :is="activeTab" />
-    </keep-alive>
-    <!-- <component :is="activeTab"/> -->
-    <!-- <div class="tab">
-      <TabA v-if="activeTab === 'TabA'" class="tabA" />
-      <TabB v-if="activeTab === 'TabB'" class="tabB" />
-      <TabC v-if="activeTab === 'TabC'" class="tabC" />
-    </div> -->
+   
+    <theComponent/>
   </div>
 </template>
 <script>
-import TabA from "./TabA.vue";
-import TabB from "./TabB.vue";
-import TabC from "./TabC.vue";
-
+import theComponent from "./TheComponent.vue";
 export default {
   name: "myHome",
   components: {
-    TabA,
-    TabB,
-    TabC,
+    theComponent,
   },
   data() {
     return {
-      activeTab: "TabA",
+      // msg: "vue js 3 lifecycle hooks",
+      // myComment: "",
     };
   },
-  methods: {},
+  methods: {
+    // handleClick() {
+    //   console.log("Clicked");
+    },
+  // },
+  // beforeCreate() {
+  //   console.log("beforeCreate");
+  //   // console.log(this.msg);
+  // },
+  // created() {
+  //   console.log("Created");
+  //   // console.log(this.msg);
+  // },
+  // beforeMount() {
+  //   console.log("beforemount");
+  //   // console.log(this.msg)
+  // },
+  // mounted() {
+  //   console.log("Mounted");
+  //   // console.log(this.msg)
+  // },
+  // beforeUpdate() {
+  //   console.log("beforeupdate");
+  // },
+  // updated() {
+  //   console.log("updated");
+  // },
 };
 </script>
 <style lang="scss" scoped>
